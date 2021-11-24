@@ -83,9 +83,12 @@ public class RPSResolverTest {
 
     @Test
     public void invalidInputTest() {
-        String move = "asdf";
-        RPSResolver.Response response = resolver.play(move);
-        assertEquals(RPSResolver.Response.error("Playing failed. Your move: asdf"), response);
+        assertThrows(IllegalArgumentException.class, () -> resolver.play("asdf"));
+        assertThrows(IllegalArgumentException.class, () -> resolver.play(""));
+        assertThrows(IllegalArgumentException.class, () -> resolver.play("rock1"));
+        assertThrows(IllegalArgumentException.class, () -> resolver.play("paper.rock"));
+        assertThrows(IllegalArgumentException.class, () -> resolver.play("paperrock"));
+        assertThrows(IllegalArgumentException.class, () -> resolver.play("98iujko98iuj2k3io49riuvnocw2039-2fj"));
     }
 
     @Test
@@ -102,7 +105,7 @@ public class RPSResolverTest {
         assertEquals("PAPER", stats.getFavouriteMove());
         assertEquals(7 / 9.0, stats.getPercentageOfFavouriteMove(), 0.0000001);
         assertEquals(0.0, stats.getBetterThanOtherUsersPercentage(), 0.0000001);
-        assertTrue(Double.compare(stats.getWinRate(), 1 / 3.0) <= 0); // win rate of player
+        assertTrue(Double.compare(stats.getWinRate(), 1.0) <= 0); // win rate of player
     }
 
     @Test

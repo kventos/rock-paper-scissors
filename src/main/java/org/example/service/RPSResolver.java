@@ -1,7 +1,5 @@
 package org.example.service;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
@@ -14,7 +12,6 @@ import java.util.stream.Collectors;
 @SessionScope
 public class RPSResolver implements Serializable {
     private static final long serialVersionUID = -8077201717643372583L;
-    private static final Log LOG = LogFactory.getLog(RPSResolver.class);
 
     private static final int LENGTH = Move.values().length;
 
@@ -32,20 +29,14 @@ public class RPSResolver implements Serializable {
 
 
     public Response play(String moveStr) {
-        try {
-            Move move = Move.valueOf(moveStr.toUpperCase());
-            Move lastMove = movesHistory.peekLast();
-            Move preLastMove = movesHistory.size() > 1 ? movesHistory.get(movesHistory.size() - 2) : null;
-            Move aiMove = nextMove(lastMove, preLastMove);
+        Move move = Move.valueOf(moveStr.toUpperCase());
+        Move lastMove = movesHistory.peekLast();
+        Move preLastMove = movesHistory.size() > 1 ? movesHistory.get(movesHistory.size() - 2) : null;
+        Move aiMove = nextMove(lastMove, preLastMove);
 
-            updateState(move, lastMove, preLastMove);
+        updateState(move, lastMove, preLastMove);
 
-            return makeDecision(move, aiMove);
-        } catch (Exception ex) {
-            String message = "Playing failed. Your move: " + moveStr;
-            LOG.error(message, ex);
-            return Response.error(message);
-        }
+        return makeDecision(move, aiMove);
     }
 
     public DetailedStats stop() {
