@@ -140,4 +140,35 @@ public class RPSResolverTest {
         assertEquals(1 / 3.0, stats.getPercentageOfFavouriteMove(), 0.0000001);
         assertEquals(0.0, stats.getBetterThanOtherUsersPercentage(), 0.0000001);
     }
+
+    @Test
+    public void playRealPersonMovesTest() {
+        String[] moves = new String[] {"rock", "rock", "scissors", "paper", "rock", "paper", "scissors", "paper", "scissors",
+                "scissors", "rock", "rock", "paper", "paper", "scissors", "paper", "paper", "paper", "rock", "paper",
+                "scissors", "paper", "rock", "rock", "paper", "scissors", "scissors", "rock", "rock", "rock", "paper",
+                "rock", "rock", "scissors", "paper", "rock", "scissors", "paper", "rock", "scissors", "scissors",
+                "paper", "scissors", "paper", "scissors", "rock", "scissors", "rock", "scissors", "rock", "rock",
+                "rock", "rock", "scissors", "paper", "rock", "paper", "scissors", "paper", "scissors",
+                "scissors", "rock", "rock", "paper", "paper", "scissors", "paper", "paper", "paper", "rock", "paper",
+                "scissors", "paper", "rock", "rock", "paper", "scissors", "scissors", "rock", "rock", "rock", "paper",
+                "rock", "rock", "scissors", "paper", "rock", "scissors", "paper", "rock", "scissors", "scissors",
+                "paper", "scissors", "paper", "scissors", "rock", "scissors", "rock", "scissors", "rock", "rock",
+                "paper", "paper", "paper", "paper", "paper", "paper", "paper", "paper", "paper", "paper", "paper",
+                "rock", "rock", "scissors", "paper", "rock", "paper", "scissors", "paper", "scissors",
+                "scissors", "rock", "rock", "paper", "paper", "scissors", "paper", "paper", "paper", "rock", "paper",
+                "scissors", "paper", "rock", "rock", "paper", "scissors", "scissors", "rock", "rock", "rock", "paper",
+                "rock", "rock", "scissors", "paper", "rock", "scissors", "paper", "rock", "scissors", "scissors",
+                "paper", "scissors", "paper", "scissors", "rock", "scissors", "rock", "scissors", "rock", "rock",
+                "scissors", "paper", "paper", "rock", "rock", "paper", "scissors", "rock", "rock", "scissors",
+                "paper", "rock", "scissors", "paper", "rock", "scissors", "scissors", "paper", "scissors", "paper",
+                "scissors", "rock", "scissors", "rock", "scissors", "rock", "rock", "rock", "rock", "scissors",
+                "scissors", "rock", "rock", "paper", "paper", "scissors", "paper", "paper", "paper", "rock", "paper"};
+        RPSResolver.Response response = null;
+
+        for (String move : moves) {
+            response = resolver.play(move);
+        }
+
+        assertTrue(response.statistics.getDefeats() > response.statistics.getVictories()); // ai wins
+    }
 }
