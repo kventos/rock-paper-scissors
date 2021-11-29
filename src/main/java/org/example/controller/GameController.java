@@ -6,9 +6,7 @@ import org.apache.commons.logging.LogFactory;
 import org.example.service.OverallStatsKeeper;
 import org.example.service.RPSResolver;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,7 +27,7 @@ public class GameController {
 
     private final Gson gson = new Gson();
 
-    @GetMapping("/play/{move}")
+    @PostMapping("/play/{move}")
     public String play(@PathVariable String move, HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
             request.getSession().setMaxInactiveInterval(7 * 24 * 60 * 60);
@@ -46,7 +44,7 @@ public class GameController {
         }
     }
 
-    @GetMapping("/stop")
+    @PutMapping("/stop")
     public String stop(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
             RPSResolver.DetailedStats ds = rpsResolver.stop();
