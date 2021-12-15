@@ -11,7 +11,7 @@ How to launch:
 
 `./gradlew clean build`
 
-2. You can extract and run application fron built tar file 
+2. You can extract and run application from built tar file 
 
 `tar xzvf build/distribution/rps_resolver-1.0-SNAPSHOT.tar`
 
