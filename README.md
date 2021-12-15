@@ -1,7 +1,8 @@
 Simple AI that can play rock paper scissors game. Take into account that humans are very bad at generating random numbers.   
 
 
-How to launch
+How to launch:
+
 0. Make sure you have installed jvm
 
 1. Build the project
