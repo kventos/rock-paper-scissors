@@ -1,4 +1,3 @@
-Description
 Simple AI that can play rock paper scissors game. Take into account that humans are very bad at generating random numbers.   
 
 
